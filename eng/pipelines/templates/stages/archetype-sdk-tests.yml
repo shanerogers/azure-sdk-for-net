@@ -57,6 +57,7 @@ parameters:
       TestTargetFramework: netcoreapp2.1
     Windows_NetCore_Record:
       OSVmImage: "windows-2019"
+      Foobar: 'bbp'
       TestMode: Record
       TestTargetFramework: netcoreapp2.1
       SupportedClouds: 'Public'
