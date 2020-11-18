@@ -44,7 +44,7 @@ jobs:
 
     #condition: and(succeededOrFailed(), eq(eq(variables['Record'], 'true'), eq(variables['TestMode'], 'Record')))
     #condition: and(succeededOrFailed(), eq(variables.Foobar, 'bbp'))
-    condition: and(succeededOrFailed(), contains(variables['Build.DefinitionName'], 'test'))
+    #condition: and(succeededOrFailed(), contains(variables['Build.DefinitionName'], 'test'))
     variables:
       - template: ../variables/globals.yml
       # ServiceDirectory references must get passed down by the caller as variable references

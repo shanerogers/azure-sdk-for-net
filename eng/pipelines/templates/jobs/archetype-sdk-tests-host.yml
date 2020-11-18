@@ -21,7 +21,8 @@ jobs:
       Platforms:
         ${{ each platform in parameters.Platforms }}:
           ${{ if eq(platform.value.Container, '') }}:
-            ${{ platform.key }}: ${{ platform.value }}
+            ${{ if eq(eq(variables.Record, 'true'), eq(platform.value.TestMode, 'Record')) }}:
+              ${{ platform.key }}: ${{ platform.value }}
       CloudConfig: ${{ parameters.CloudConfig }}
       ${{ each param in parameters.AdditionalParameters }}:
         ${{ param.key }}: ${{ param.value }}
@@ -34,7 +35,8 @@ jobs:
         Platforms:
           ${{ each platform in parameters.Platforms }}:
             ${{ if ne(platform.value.Container, '') }}:
-              ${{ platform.key }}: ${{ platform.value }}
+              ${{ if eq(eq(variables.Record, 'true'), eq(platform.value.TestMode, 'Record')) }}:
+                ${{ platform.key }}: ${{ platform.value }}
         CloudConfig: ${{ parameters.CloudConfig }}
         ${{ each param in parameters.AdditionalParameters }}:
           ${{ param.key }}: ${{ param.value }}
