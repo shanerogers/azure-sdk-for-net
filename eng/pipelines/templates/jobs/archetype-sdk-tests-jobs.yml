@@ -43,7 +43,7 @@ jobs:
       matrix: ${{ parameters.Platforms }}
 
     #condition: and(succeededOrFailed(), eq(eq(variables['Record'], 'true'), eq(variables['TestMode'], 'Record')))
-    condition: $[and(succeededOrFailed(), eq(variables['Foobar'], 'bbp'))]
+    condition: and(succeededOrFailed(), eq(variables.Foobar, 'bbp'))
     variables:
       - template: ../variables/globals.yml
       # ServiceDirectory references must get passed down by the caller as variable references
