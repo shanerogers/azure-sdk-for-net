@@ -52,7 +52,7 @@ jobs:
       - name: ArmTemplateParameters
         value: '@{}'
       - name: TestMode
-        value: $[ coalesce(replace(variables.ShouldRecord, 'true', 'Record'), 'None') ]
+        value: 'None'
 
     timeoutInMinutes: ${{ parameters.TimeoutInMinutes }}
 
@@ -79,17 +79,11 @@ jobs:
       #          ArmTemplateParameters: $(ArmTemplateParameters)
 
       - pwsh: |
-          if ($env:CanRecord -eq 'true') {
-            Write-Host "CAN RECORD"
+          if ($env:SupportsRecording -and $env:Record) {
+            Write-Host "Enabling Record mode"
+            Write-Host "##vso[task.setvariable variable=TestMode]Record"
           }
-
-          if ($env:CanRecord -eq 'true' -and $env:Record) {
-            Write-Host "WILL RECORD"
-          }
-
-          Write-Host "##vso[task.setvariable variable=BbpTestMode]true"
-        displayName: bbptest
-
+        displayName: Set Test Mode
 
       - pwsh: >
           Write-Host "BBP AZURE_TEST_MODE:" + $env:AZURE_TEST_MODE;
