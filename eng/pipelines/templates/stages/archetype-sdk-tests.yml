@@ -58,7 +58,8 @@ parameters:
     Windows_NetCore:
       OSVmImage: "windows-2019"
       TestTargetFramework: netcoreapp2.1
-      TestMode: $[ replace(variables['Record'], 'true', 'Record') ]
+      #TestMode: $[ replace(variables['Record'], 'true', 'Record') ]
+      ShouldRecord: $(Record)
 - name: PlatformPreSteps
   type: object
   default:

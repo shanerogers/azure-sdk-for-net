@@ -52,7 +52,7 @@ jobs:
       - name: ArmTemplateParameters
         value: '@{}'
       - name: TestMode
-        value: 'None'
+        value: $[ coalesce(replace(variables.ShouldRecord, 'true', 'Record'), 'None') ]
 
     timeoutInMinutes: ${{ parameters.TimeoutInMinutes }}
 
