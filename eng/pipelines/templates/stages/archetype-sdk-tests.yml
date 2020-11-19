@@ -60,6 +60,7 @@ parameters:
       TestTargetFramework: netcoreapp2.1
       #TestMode: $[ replace(variables['Record'], 'true', 'Record') ]
       ShouldRecord: $[ variables.Record ]
+      CanRecord: 'true'
 - name: PlatformPreSteps
   type: object
   default:

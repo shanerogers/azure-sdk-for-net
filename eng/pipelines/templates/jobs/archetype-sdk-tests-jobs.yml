@@ -78,8 +78,27 @@ jobs:
       #          SubscriptionConfiguration: ${{ parameters.CloudConfig.SubscriptionConfiguration }}
       #          ArmTemplateParameters: $(ArmTemplateParameters)
 
+      - pwsh: |
+          if ($env:CanRecord -eq 'true') {
+            Write-Host "CAN RECORD"
+          }
+
+          if ($env:CanRecord -eq 'true' -and $env:Record) {
+            Write-Host "WILL RECORD"
+          }
+
+          Write-Host "##vso[task.setvariable variable=BbpTestMode]true"
+        displayName: bbptest
+
+
       - pwsh: >
           Write-Host "BBP AZURE_TEST_MODE:" + $env:AZURE_TEST_MODE;
+          Write-Host "BBP AZURE_TEST_MODE_RECORD:" + $env:ShouldRecord;
+          Write-Host "BBP AZURE_TEST_MODE_RECORD:" + $env:SHOULDRECORD;
+          Write-Host "BBP AZURE_TEST_MODE_RECORD:" + $env:SHOULD_RECORD;
+          Write-Host "BBP AZURE_TEST_MODE_MODE:" + $env:TestMode;
+          Write-Host "BBP TEST_MODE:" + $env:BbpTestMode;
+
           #          dotnet test eng/service.proj
           #          --framework $(TestTargetFramework)
           #          --filter "TestCategory!=Manually"
