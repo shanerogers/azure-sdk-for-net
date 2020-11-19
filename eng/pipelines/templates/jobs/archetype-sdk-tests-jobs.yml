@@ -77,6 +77,8 @@ jobs:
           ArmTemplateParameters: $(ArmTemplateParameters)
 
       - pwsh: >
+          Write-Host "BBP AZURE_TEST_MODE" + $(AZURE_TEST_MODE);
+          Write-Host "BBP AZURE_TEST_MODE:" + $env:AZURE_TEST_MODE;
           dotnet test eng/service.proj
           --framework $(TestTargetFramework)
           --filter "TestCategory!=Manually"
